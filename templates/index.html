@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bonjour Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+{% if prenom %}
+    <h1>Bonjour {{ prenom }} !</h1>
+    <h2>Ton mot de passe : {{ password }}</h2>
+    <a href="/" class="button">Revenir</a>
+
+{% else %}
+
+    {% if erreur %}
+        <p style="color:red;">{{ erreur }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <label for="prenom">Entrez votre Nom d'utilisateur :</label><br><br>
+        <input type="text" id="prenom" name="prenom" required><br>
+
+        <label for="password">Entrez votre mot de passe :</label><br><br>
+        <input type="password" id="password" name="password" required><br>
+
+        <label for="password2">Confirmez votre mot de passe :</label><br><br>
+        <input type="password" id="password2" name="password2" required><br>
+
+        <input type="submit" value="Envoyer">
+    </form>
+
+
+{% endif %}
+    <a href="/login">connection</a>
+</body>
+</html>
