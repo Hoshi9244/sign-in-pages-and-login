@@ -53,8 +53,20 @@ def index():
     return render_template('index.html', erreur=erreur, prenom=prenom)
 @app.route('/login')
 def login():
-    """Sert la page principale 'index.html'."""
+    prenom = None
+
+    if request.method == 'POST':
+        prenom = request.form.get('prenom')
+        password = request.form.get('password')
+    db = get_db()
+    cur = db.cursor()
+            
+    cur.execute(
+        "SELECT username,password FROM Compte WHERE username = ? AND password = ?",(prenom,password)
+                )
+    
+    db.commit()
     return render_template('login.html')
-# --- Lancement du serveur ---
+
 if __name__ == '__main__':
     app.run(debug=True)
