@@ -1,15 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>Login</title>
 </head>
 <body>
-    <label for="prenom">Entrez votre Nom d'utilisateur :</label><br><br>
-        <input type="text" id="prenom" name="prenom" required><br>
 
-        <label for="password">Entrez votre mot de passe :</label><br><br>
-        <input type="password" id="password" name="password" required><br>
+<h1>Connexion</h1>
+
+<!-- Message d’erreur -->
+{% if erreur %}
+<p style="color:red;">{{ erreur }}</p>
+{% endif %}
+
+<!-- Message de succès -->
+{% if succes %}
+<p style="color:green;">{{ succes }}</p>
+<p>Bienvenue {{ prenom }} !</p>
+<p>Ton mot de passe : {{ password }}</p>
+<a href="/" class="button">Revenir</a>
+{% endif %}
+
+<!-- Formulaire seulement si pas encore connecté -->
+{% if not succes %}
+<form method="POST">
+    <input type="text" name="prenom" placeholder="Nom d'utilisateur">
+    <input type="password" name="password" placeholder="Mot de passe">
+    <button type="submit">Se connecter</button>
+</form>
+{% endif %}
+
+<a href="/">sin up</a>
+
 </body>
 </html>
